@@ -34,7 +34,8 @@
         splitOnChars: options.splitOnChars || ['.', '-', '–', '—', ' '], //Split on sentences (periods), hypens, en-dashes, em-dashes, and words (spaces).
         animate: options.animate || false,
         truncationChar: options.truncationChar || '…',
-        truncationHTML: options.truncationHTML
+        truncationHTML: options.truncationHTML,
+        onTruncate: options.onTruncate || Function.prototype
       },
 
       sty = element.style,
@@ -258,6 +259,7 @@
       var height = getMaxHeight(clampValue);
       if (height <= element.clientHeight) {
         clampedText = truncate(getLastChild(element), height);
+        opt.onTruncate();
       }
     }
 
